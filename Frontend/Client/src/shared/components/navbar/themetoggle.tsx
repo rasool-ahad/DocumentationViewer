@@ -8,7 +8,7 @@ export function ThemeToggle() {
 
   return (
     <button onClick={toggleTheme}>
-      {theme === "dark" ? <FiSun /> : <FiMoon />}
+      {theme === "dark" ? <FiSun className="w-6 h-6 lg:w-7 lg:h-7 " /> : <FiMoon className="w-6 h-6 lg:w-7 lg:h-7 "/>}
     </button>
   );
 }

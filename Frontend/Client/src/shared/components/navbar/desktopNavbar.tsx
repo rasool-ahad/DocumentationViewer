@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { NavbarData } from "./navbarTypes";
+import { ThemeToggle } from "./themetoggle";
 
 type Props = {
   data: NavbarData;
@@ -12,6 +13,7 @@ export function DesktopNav({ data }: Props) {
         <Image src={data.logoUrl} alt="logo" width={32} height={32} />
         <span className="font-semibold">{data.documentationTitle}</span>
       </div>
+      <ThemeToggle />
     </header>
   );
 }
