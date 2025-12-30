@@ -6,12 +6,14 @@ import Link from "next/link";
 import type { NavItem } from "../sidebar/sidebarTypes";
 import { cn } from "../../utils/cn";
 import Image from "next/image";
+import { NavbarData } from "./navbarTypes";
 
 interface MobileNavProps {
   navItems: NavItem[];
+  data:NavbarData;
 }
 
-const MobileNav: React.FC<MobileNavProps> = ({ navItems }) => {
+const MobileNav: React.FC<MobileNavProps> = ({ navItems ,data}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLinkClick = () => {
@@ -20,7 +22,7 @@ const MobileNav: React.FC<MobileNavProps> = ({ navItems }) => {
 
   return (
     <>
-      <div className="flex items-center justify-center lg:hidden">
+      <div className="flex items-center justify-between lg:hidden">
         <div className="flex items-center justify-center gap-2">
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -48,8 +50,8 @@ const MobileNav: React.FC<MobileNavProps> = ({ navItems }) => {
               />
             </div>
           </button>
-          <Image src="" alt="logo" width={32} height={32} />
-          <span className="font-semibold"></span>
+          <Image src={data.logoUrl} alt="" width={32} height={32} />
+          <span className="font-semibold">{data.documentationTitle}</span>
         </div>
         <div className="flex items-center justify-center gap-2">
           <ThemeToggle />
