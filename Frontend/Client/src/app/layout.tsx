@@ -63,7 +63,7 @@ export default async function RootLayout({
         <ThemeProvider>
           <div className="flex flex-col">
             <Navbar data={data.navbar} sidebarItems={data.sidebar} />
-            <div className="flex mt-16 bg-rose-400">
+            <div className="flex mt-16 ">
               {/* <Sidebar items={data.sidebar} /> */}
               <main className="flex-1">{children}</main>
             </div>

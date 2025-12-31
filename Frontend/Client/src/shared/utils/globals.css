@@ -2,25 +2,12 @@
 @import "tw-animate-css";
 
 
-:root[data-theme="dark"] {
-  --bg: #0f172a;
-  --text: #e5e7eb;
-  --primary: #38bdf8;
-}
-
-:root[data-theme="light"] {
-  --bg: #ffffff;
-  --text: #0f172a;
-  --primary: #0284c7;
-}
-
-body {
-  background-color: var(--bg);
-  color: var(--text);
-}
 
 
-@custom-variant dark (&:is(.dark *));
+
+
+@custom-variant dark (&:is(html[data-theme="dark"] *));
+
 
 @theme inline {
   --color-background: var(--background);
@@ -100,7 +87,7 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
+html[data-theme="dark"] {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
