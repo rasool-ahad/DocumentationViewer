@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../../0.Frameworks/DDD/Framework.DDD.Domain.Contract/Framework.DDD.Domain.Contract.csproj" />
+  </ItemGroup>
+</Project>
+

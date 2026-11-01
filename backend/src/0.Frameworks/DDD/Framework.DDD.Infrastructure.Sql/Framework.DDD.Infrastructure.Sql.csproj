@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
+    <PackageReference Include="Microsoft.Data.SqlClient" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="EFCoreSecondLevelCacheInterceptor" />
+    <PackageReference Include="EasyCaching.Redis" />
+    <PackageReference Include="StackExchange.Redis" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.DDD.Application\Framework.DDD.Application.csproj" />
+    <ProjectReference Include="..\Framework.DDD.Domain.Contract\Framework.DDD.Domain.Contract.csproj" />
+    <ProjectReference Include="..\Framework.DDD.Domain.Toolkits\Framework.DDD.Domain.Toolkits.csproj" />
+    <ProjectReference Include="..\Framework.DDD.Domain\Framework.DDD.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

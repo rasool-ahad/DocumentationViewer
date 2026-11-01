@@ -1,0 +1,44 @@
+<Solution>
+  <Folder Name="/SolutionFolder/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/0.Frameworks/">
+    <Project Path="src/0.Frameworks/Framework.Guard/Framework.Guard.csproj" />
+    <Project Path="src/0.Frameworks/Framework.Redis/Framework.Redis.csproj" />
+    <Project Path="src/0.Frameworks/Framework.ResultPattern/Framework.ResultPattern.csproj" />
+  </Folder>
+  <Folder Name="/src/0.Frameworks/DDD/">
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Application/Framework.DDD.Application.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain.Contract/Framework.DDD.Domain.Contract.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain.Toolkits/Framework.DDD.Domain.Toolkits.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain/Framework.DDD.Domain.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Infrastructure/Framework.DDD.Infrastructure.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Infrastructure.Sql/Framework.DDD.Infrastructure.Sql.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Presentation/Framework.DDD.Presentation.csproj" />
+  </Folder>
+  <Folder Name="/src/1.Domain/">
+    <Project Path="src/1.Domain/DocumentViewer.Contract/DocumentViewer.Contract.csproj" />
+    <Project Path="src/1.Domain/DocumentViewer.Domain/DocumentViewer.Domain.csproj" />
+  </Folder>
+  <Folder Name="/src/3.Infrastructures/">
+    <Project Path="src/3.Infrastructures/DocumentViewer.Infrastructure.Redis/DocumentViewer.Infrastructure.Redis.csproj" />
+    <Project Path="src/3.Infrastructures/DocumentViewer.Infrastructure.Sql/DocumentViewer.Infrastructure.Sql.csproj" />
+    <Project Path="src/3.Infrastructures/DocumentViewer.Infrastructure/DocumentViewer.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/4.Applications/">
+    <Project Path="src/4.Applications/DocumentViewer.Application/DocumentViewer.Application.csproj" />
+  </Folder>
+  <Folder Name="/src/5.Presentations/">
+    <Project Path="src/5.Presentations/DocumentViewer.WebApi/DocumentViewer.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/src/5.Presentations/ApiGateways/">
+    <Project Path="src/5.Presentations/ApiGateways/DocumentViewer.ApiGateway.Admin/DocumentViewer.ApiGateway.Admin.csproj" />
+    <Project Path="src/5.Presentations/ApiGateways/DocumentViewer.ApiGateway.My/DocumentViewer.ApiGateway.My.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/DocumentViewer.Domain.UnitTests/DocumentViewer.Domain.UnitTests.csproj" />
+    <Project Path="tests/DocumentViewer.IntegrationTests/DocumentViewer.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../../0.Frameworks/DDD/Framework.DDD.Infrastructure.Sql/Framework.DDD.Infrastructure.Sql.csproj" />
+    <ProjectReference Include="../../1.Domain/DocumentViewer.Domain/DocumentViewer.Domain.csproj" />
+  </ItemGroup>
+</Project>
+
