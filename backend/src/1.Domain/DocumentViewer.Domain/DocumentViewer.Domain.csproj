@@ -1,5 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <ProjectReference Include="../../0.Frameworks/DDD/Framework.DDD.Domain.Toolkits/Framework.DDD.Domain.Toolkits.csproj" />
     <ProjectReference Include="../DocumentViewer.Contract/DocumentViewer.Contract.csproj" />
   </ItemGroup>

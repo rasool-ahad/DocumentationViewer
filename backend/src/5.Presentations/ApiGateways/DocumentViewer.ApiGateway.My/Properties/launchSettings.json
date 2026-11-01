@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "DocumentViewer.ApiGateway.My": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63074;http://localhost:63076"
+    }
+  }
+}
