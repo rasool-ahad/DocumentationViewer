@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Framework.DDD.Domain.Contract.Commons.ConfigurationModels;
 using Framework.DDD.Presentation.Injections.SwaggerOperationFilters;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -18,17 +19,15 @@ public static class Bootstrapper
         this WebApplicationBuilder builder,
         Action<PresentationOptions>? configure = null)
     {
-        var options = new PresentationOptions();
-        configure?.Invoke(options);
-        PresentationOptions.Instance = options;
-
+        if (configure is not null)
+            builder.Services.Configure(configure);
         builder.Host.ConfigureHost();
 
         builder.Services.AddControllers();
         builder.Services.AddEndpointsApiExplorer();
-        builder.Services.ConfigureCors(options.CorsPolicies);
+        builder.Services.ConfigureCors();
         builder.Services.ConfigureApiVersioning();
-        builder.Services.ConfigureSwagger(options.SwaggerDocs);
+        builder.Services.ConfigureSwagger();
 
         return builder;
     }
@@ -42,11 +41,12 @@ public static class Bootstrapper
         });
     }
 
-    private static void ConfigureCors(this IServiceCollection services, ICollection<PresentationCorsOptions> corsOptions)
+    private static void ConfigureCors(this IServiceCollection services)
     {
-        services.AddCors(cors =>
+        services.AddCors();
+        services.AddOptions<CorsOptions>().Configure<IOptions<PresentationOptions>>((cors, presentation) =>
         {
-            foreach (var corsOption in corsOptions)
+            foreach (var corsOption in presentation.Value.CorsPolicies)
             {
                 cors.AddPolicy(corsOption.PolicyName, policy =>
                 {
@@ -75,11 +75,12 @@ public static class Bootstrapper
         });
     }
 
-    public static void ConfigureSwagger(this IServiceCollection services, ICollection<SwaggerDocOptions> swaggerDocOptions)
+    public static void ConfigureSwagger(this IServiceCollection services)
     {
-        services.AddSwaggerGen(options =>
+        services.AddSwaggerGen();
+        services.AddOptions<SwaggerGenOptions>().Configure<IOptions<PresentationOptions>>((options, presentation) =>
         {
-            foreach (var item in swaggerDocOptions)
+            foreach (var item in presentation.Value.SwaggerDocs)
             {
                 options.SwaggerDoc(item.Name, new OpenApiInfo { 
                     Title = item.Title, 

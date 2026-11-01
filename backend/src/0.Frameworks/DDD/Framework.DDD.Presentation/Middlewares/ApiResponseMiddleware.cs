@@ -5,6 +5,7 @@ using Framework.DDD.Presentation.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using System.Net;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -15,7 +16,10 @@ namespace Framework.DDD.Presentation.Middlewares;
 /// Middleware that wraps all API responses into a unified ApiResponse envelope.
 /// Handles success, non-success status codes, and exceptions.
 /// </summary>
-public class ApiResponseMiddleware(RequestDelegate next, ILogger<ApiResponseMiddleware> logger)
+public class ApiResponseMiddleware(
+    RequestDelegate next,
+    ILogger<ApiResponseMiddleware> logger,
+    IOptions<PresentationOptions> options)
 {
     private static readonly JsonSerializerOptions JsonOptions = new()
     {
@@ -24,7 +28,7 @@ public class ApiResponseMiddleware(RequestDelegate next, ILogger<ApiResponseMidd
         WriteIndented = false
     };
 
-    private readonly PresentationOptions _options = PresentationOptions.Instance;
+    private readonly PresentationOptions _options = options.Value;
 
     public async Task Invoke(HttpContext context)
     {

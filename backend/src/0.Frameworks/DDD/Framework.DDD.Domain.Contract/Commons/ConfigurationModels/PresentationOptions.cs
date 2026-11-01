@@ -5,8 +5,6 @@ namespace Framework.DDD.Domain.Contract.Commons.ConfigurationModels;
 /// </summary>
 public class PresentationOptions
 {
-    public static PresentationOptions Instance { get; set; } = new();
-
     /// <summary>
     /// Whether to show exception detail in API responses. Should be false in production.
     /// </summary>
