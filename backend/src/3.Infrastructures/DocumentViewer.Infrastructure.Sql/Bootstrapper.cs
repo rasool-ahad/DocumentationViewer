@@ -1,5 +1,6 @@
 using DocumentViewer.Contract.Options;
 using DocumentViewer.Domain.Users;
+using DocumentViewer.Infrastructure.Sql.Commons.Context;
 using Framework.DDD.Domain.Toolkits.Entities.Identity;
 using Framework.DDD.Infrastructure.Sql.Interceptors;
 using Framework.DDD.Infrastructure.Sql.UnitOfWork;
@@ -25,6 +26,9 @@ public static class Bootstrapper
         services.AddOptions<IdentityOptions>()
             .Bind(configuration.GetSection("Identity"));
 
+        services.AddOptions<SuperAdminOptions>()
+            .Bind(configuration.GetSection(SuperAdminOptions.SectionName));
+
         services.AddScoped<PublishDomainEventsInterceptor>();
         services.AddDbContext<DocumentViewerIdentityDbContext>((provider, options) =>
         {
@@ -38,6 +42,7 @@ public static class Bootstrapper
 
         services.AddIdentityCore<User>()
             .AddRoles<BaseRole<int>>()
+            .AddSignInManager()
             .AddEntityFrameworkStores<DocumentViewerIdentityDbContext>();
 
         return services;

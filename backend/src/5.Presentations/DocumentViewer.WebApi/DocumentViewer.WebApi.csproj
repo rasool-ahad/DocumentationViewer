@@ -1,6 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" PrivateAssets="all" />
     <ProjectReference Include="../../0.Frameworks/DDD/Framework.DDD.Presentation/Framework.DDD.Presentation.csproj" />
     <ProjectReference Include="../../3.Infrastructures/DocumentViewer.Infrastructure/DocumentViewer.Infrastructure.csproj" />
     <ProjectReference Include="../../4.Applications/DocumentViewer.Application/DocumentViewer.Application.csproj" />

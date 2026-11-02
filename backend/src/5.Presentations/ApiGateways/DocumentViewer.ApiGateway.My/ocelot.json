@@ -1,0 +1,11 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/my/{everything}",
+      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE", "PATCH" ],
+      "DownstreamPathTemplate": "/api/my/{everything}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    }
+  ]
+}

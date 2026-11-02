@@ -2,6 +2,7 @@
   <ItemGroup>
     <ProjectReference Include="../../0.Frameworks/DDD/Framework.DDD.Application/Framework.DDD.Application.csproj" />
     <ProjectReference Include="../../1.Domain/DocumentViewer.Domain/DocumentViewer.Domain.csproj" />
+    <ProjectReference Include="../../1.Domain/DocumentViewer.Contract/DocumentViewer.Contract.csproj" />
   </ItemGroup>
 </Project>
 

@@ -1,5 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <ProjectReference Include="../../1.Domain/DocumentViewer.Contract/DocumentViewer.Contract.csproj" />
     <ProjectReference Include="../DocumentViewer.Infrastructure.Sql/DocumentViewer.Infrastructure.Sql.csproj" />
     <ProjectReference Include="../DocumentViewer.Infrastructure.Redis/DocumentViewer.Infrastructure.Redis.csproj" />
   </ItemGroup>

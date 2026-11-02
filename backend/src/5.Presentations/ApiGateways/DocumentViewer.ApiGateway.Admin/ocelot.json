@@ -1,0 +1,11 @@
+{
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/admin/users/login",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/admin/users/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    }
+  ]
+}
