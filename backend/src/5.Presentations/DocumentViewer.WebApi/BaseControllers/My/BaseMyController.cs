@@ -6,5 +6,5 @@ namespace DocumentViewer.WebApi.BaseControllers.My;
 
 [Route("api/my/[controller]")]
 [Authorize]
-[ApiExplorerSettings(GroupName = "DocumentViewer")]
+[ApiExplorerSettings(GroupName = "DocumentViewer.My")]
 public abstract class BaseMyController : BaseController;

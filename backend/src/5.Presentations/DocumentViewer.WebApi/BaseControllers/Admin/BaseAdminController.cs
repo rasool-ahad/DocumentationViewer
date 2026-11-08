@@ -7,5 +7,5 @@ namespace DocumentViewer.WebApi.BaseControllers.Admin;
 
 [Route("api/admin/[controller]")]
 [Authorize(Roles = AdminRoles.Admin + "," + AdminRoles.SuperAdmin)]
-[ApiExplorerSettings(GroupName = "DocumentViewer")]
+[ApiExplorerSettings(GroupName = "DocumentViewer.Admin")]
 public abstract class BaseAdminController : BaseController;

@@ -1,0 +1,24 @@
+Entity Framework Core commands for DocumentViewer
+
+DbContext: DocumentViewerIdentityDbContext
+Startup project: DocumentViewer.WebApi
+Migration project: DocumentViewer.Infrastructure.Sql
+
+Visual Studio Package Manager Console (run from the backend solution):
+
+Add-Migration NewMigrationName -Context DocumentViewerIdentityDbContext -StartupProject DocumentViewer.WebApi -Project DocumentViewer.Infrastructure.Sql
+Update-Database -Context DocumentViewerIdentityDbContext -StartupProject DocumentViewer.WebApi -Project DocumentViewer.Infrastructure.Sql
+Get-Migration -Context DocumentViewerIdentityDbContext -StartupProject DocumentViewer.WebApi -Project DocumentViewer.Infrastructure.Sql
+Script-Migration -Idempotent -Context DocumentViewerIdentityDbContext -StartupProject DocumentViewer.WebApi -Project DocumentViewer.Infrastructure.Sql
+Remove-Migration -Context DocumentViewerIdentityDbContext -StartupProject DocumentViewer.WebApi -Project DocumentViewer.Infrastructure.Sql
+
+dotnet ef CLI (run from the backend directory):
+
+dotnet ef migrations add NewMigrationName --context DocumentViewerIdentityDbContext --startup-project src/5.Presentations/DocumentViewer.WebApi --project src/3.Infrastructures/DocumentViewer.Infrastructure.Sql
+dotnet ef database update --context DocumentViewerIdentityDbContext --startup-project src/5.Presentations/DocumentViewer.WebApi --project src/3.Infrastructures/DocumentViewer.Infrastructure.Sql
+dotnet ef migrations list --context DocumentViewerIdentityDbContext --startup-project src/5.Presentations/DocumentViewer.WebApi --project src/3.Infrastructures/DocumentViewer.Infrastructure.Sql
+dotnet ef migrations script --idempotent --context DocumentViewerIdentityDbContext --startup-project src/5.Presentations/DocumentViewer.WebApi --project src/3.Infrastructures/DocumentViewer.Infrastructure.Sql
+dotnet ef migrations remove --context DocumentViewerIdentityDbContext --startup-project src/5.Presentations/DocumentViewer.WebApi --project src/3.Infrastructures/DocumentViewer.Infrastructure.Sql
+
+Replace NewMigrationName with the name of a new migration. InitialIdentity already exists.
+Set SqlDatabase__ConnectionString for the target SQL Server before updating the database.

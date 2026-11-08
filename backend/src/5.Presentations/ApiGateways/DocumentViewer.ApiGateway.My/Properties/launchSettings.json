@@ -1,12 +1,14 @@
 {
   "profiles": {
-    "DocumentViewer.ApiGateway.My": {
+    "DocumentViewer.ApiGateway.My.Debug": {
       "commandName": "Project",
+      "dotnetRunMessages": true,
       "launchBrowser": true,
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:63071;http://localhost:63076",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "applicationUrl": "https://localhost:63074;http://localhost:63076"
+        "ASPNETCORE_ENVIRONMENT": "Debug"
+      }
     }
   }
 }

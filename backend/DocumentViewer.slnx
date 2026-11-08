@@ -1,4 +1,7 @@
 <Solution>
+  <Folder Name="/Docs/">
+    <File Path="EFCommands.txt" />
+  </Folder>
   <Folder Name="/SolutionFolder/">
     <File Path="Directory.Build.props" />
     <File Path="Directory.Packages.props" />
@@ -14,8 +17,8 @@
     <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain.Contract/Framework.DDD.Domain.Contract.csproj" />
     <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain.Toolkits/Framework.DDD.Domain.Toolkits.csproj" />
     <Project Path="src/0.Frameworks/DDD/Framework.DDD.Domain/Framework.DDD.Domain.csproj" />
-    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Infrastructure/Framework.DDD.Infrastructure.csproj" />
     <Project Path="src/0.Frameworks/DDD/Framework.DDD.Infrastructure.Sql/Framework.DDD.Infrastructure.Sql.csproj" />
+    <Project Path="src/0.Frameworks/DDD/Framework.DDD.Infrastructure/Framework.DDD.Infrastructure.csproj" />
     <Project Path="src/0.Frameworks/DDD/Framework.DDD.Presentation/Framework.DDD.Presentation.csproj" />
   </Folder>
   <Folder Name="/src/1.Domain/">

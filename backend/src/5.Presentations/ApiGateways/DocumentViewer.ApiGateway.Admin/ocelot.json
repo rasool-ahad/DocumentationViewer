@@ -6,6 +6,48 @@
       "DownstreamPathTemplate": "/api/admin/users/login",
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/users/logout",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamPathTemplate": "/api/admin/users/logout",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/users",
+      "UpstreamHttpMethod": [ "GET", "POST" ],
+      "DownstreamPathTemplate": "/api/admin/users",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/users/{id}",
+      "UpstreamHttpMethod": [ "GET", "PUT", "DELETE" ],
+      "DownstreamPathTemplate": "/api/admin/users/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/users/{id}/password",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamPathTemplate": "/api/admin/users/{id}/password",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/api/admin/users/{id}/status",
+      "UpstreamHttpMethod": [ "PATCH" ],
+      "DownstreamPathTemplate": "/api/admin/users/{id}/status",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
+    },
+    {
+      "UpstreamPathTemplate": "/swagger/v1/swagger.json",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/swagger/DocumentViewer.Admin/swagger.json",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [ { "Host": "localhost", "Port": 63075 } ]
     }
   ]
 }
