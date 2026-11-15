@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace DocumentViewer.Contract.Users.Admin.Commands;
+namespace DocumentViewer.Application.Users.Admin.Commands.Login;
 
 public sealed class LoginAdminRequest
 {

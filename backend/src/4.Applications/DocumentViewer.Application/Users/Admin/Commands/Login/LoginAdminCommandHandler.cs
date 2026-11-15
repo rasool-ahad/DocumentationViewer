@@ -1,12 +1,11 @@
-using DocumentViewer.Contract.Users.Admin.Commands;
-using DocumentViewer.Contract.Users.Admin.Services;
 using DocumentViewer.Contract.Users.Admin;
+using DocumentViewer.Contract.Users.Admin.Services;
 using DocumentViewer.Domain.Users;
 using Framework.DDD.Application.Commands;
 using Framework.DDD.Application.Exceptions;
 using Microsoft.AspNetCore.Identity;
 
-namespace DocumentViewer.Application.Users.Admin.Commands;
+namespace DocumentViewer.Application.Users.Admin.Commands.Login;
 
 public sealed class LoginAdminCommandHandler(
     UserManager<User> userManager,
@@ -30,7 +29,7 @@ public sealed class LoginAdminCommandHandler(
             throw new ApplicationUnauthorizedException("Invalid credentials.");
 
         var roles = await userManager.GetRolesAsync(user);
-        var token = jwtTokenService.CreateAccessToken(user.Id, user.UserName!, roles.ToArray());
+        var token = jwtTokenService.CreateAccessToken(user.Id, user.UserName!, roles.ToArray(), await userManager.GetSecurityStampAsync(user));
         return new LoginAdminResponse(token.Value, "Bearer", token.ExpiresAtUtc);
     }
 }

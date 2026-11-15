@@ -1,3 +1,3 @@
-namespace DocumentViewer.Contract.Users.Admin.Commands;
+namespace DocumentViewer.Application.Users.Admin.Commands.Login;
 
 public sealed record LoginAdminResponse(string AccessToken, string TokenType, DateTimeOffset ExpiresAtUtc);

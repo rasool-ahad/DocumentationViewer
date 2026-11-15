@@ -1,6 +1,8 @@
 using DocumentViewer.Contract.Options;
+using DocumentViewer.Application.Users.Admin;
 using DocumentViewer.Domain.Users;
 using DocumentViewer.Infrastructure.Sql.Commons.Context;
+using DocumentViewer.Infrastructure.Sql.Users;
 using Framework.DDD.Domain.Toolkits.Entities.Identity;
 using Framework.DDD.Infrastructure.Sql.Interceptors;
 using Framework.DDD.Infrastructure.Sql.UnitOfWork;
@@ -39,6 +41,7 @@ public static class Bootstrapper
 
         services.AddScoped<IUnitOfWork<int>>(
             provider => provider.GetRequiredService<DocumentViewerIdentityDbContext>());
+        services.AddScoped<IAdminUserRepository, AdminUserRepository>();
 
         services.AddIdentityCore<User>()
             .AddRoles<BaseRole<int>>()
