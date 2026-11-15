@@ -47,10 +47,30 @@ class HttpClient {
   }
 
   async post<TRequest, TResponse>(path: string, request: BaseRequest<TRequest>, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
+    return this.send<TResponse>("POST", path, request, signal);
+  }
+
+  async get<TResponse>(path: string, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
+    return this.send<TResponse>("GET", path, undefined, signal);
+  }
+
+  async put<TRequest, TResponse>(path: string, request: BaseRequest<TRequest>, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
+    return this.send<TResponse>("PUT", path, request, signal);
+  }
+
+  async patch<TRequest, TResponse>(path: string, request: BaseRequest<TRequest>, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
+    return this.send<TResponse>("PATCH", path, request, signal);
+  }
+
+  async delete<TResponse>(path: string, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
+    return this.send<TResponse>("DELETE", path, undefined, signal);
+  }
+
+  private async send<TResponse>(method: string, path: string, request?: BaseRequest<unknown>, signal?: AbortSignal): Promise<BaseResponse<TResponse>> {
     let options: RequestInit = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(request),
+      method,
+      headers: request ? { "Content-Type": "application/json" } : undefined,
+      body: request ? JSON.stringify(request) : undefined,
       cache: "no-store",
       signal,
     };

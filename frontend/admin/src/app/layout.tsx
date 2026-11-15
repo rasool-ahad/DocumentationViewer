@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "DocViewer Admin | Sign In",
-  description: "Sign in to the DocViewer administration panel.",
+  title: "DocViewer Admin",
+  description: "Manage your DocViewer workspace.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

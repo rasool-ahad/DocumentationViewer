@@ -1,11 +1,12 @@
 import Image from "next/image";
-import { BrandIcon } from "@/features/auth/components/brand-icon";
+import { AuthGate } from "@/features/auth/components/auth-gate";
 import { LoginForm } from "@/features/auth/components/login-form";
-import { ThemeSwitch } from "@/features/auth/components/theme-switch";
+import { BrandIcon } from "@/shared/components/brand-icon";
+import { ThemeSwitch } from "@/shared/components/theme-switch";
 
 export default function LoginPage() {
   return (
-    <main className="login-page">
+    <AuthGate requireAuth={false}><main className="login-page">
       <div className="login-shell">
         <section className="promo-panel" aria-label="About DocViewer">
           <div className="brand"><BrandIcon className="size-10" /><span>DocViewer</span></div>
@@ -27,6 +28,6 @@ export default function LoginPage() {
           </div>
         </section>
       </div>
-    </main>
+    </main></AuthGate>
   );
 }

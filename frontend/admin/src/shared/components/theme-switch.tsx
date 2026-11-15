@@ -2,12 +2,13 @@
 
 import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
+import { cn } from "cn";
 import { Button } from "@/shared/components/ui/button";
 import { storageService } from "@/shared/services/storage.service";
 
 const THEME_KEY = "docviewer.admin.theme";
 
-export function ThemeSwitch() {
+export function ThemeSwitch({ className }: { className?: string }) {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
@@ -24,7 +25,7 @@ export function ThemeSwitch() {
   }
 
   return (
-    <div className="theme-switch" role="group" aria-label="Color theme">
+    <div className={cn("theme-switch", className)} role="group" aria-label="Color theme">
       <Button type="button" variant="ghost" size="icon" data-active={theme === "light"} aria-label="Light theme" aria-pressed={theme === "light"} onClick={() => updateTheme("light")}><Sun size={19} /></Button>
       <Button type="button" variant="ghost" size="icon" data-active={theme === "dark"} aria-label="Dark theme" aria-pressed={theme === "dark"} onClick={() => updateTheme("dark")}><Moon size={19} /></Button>
     </div>

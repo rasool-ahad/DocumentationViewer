@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:is(.dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #101321;
@@ -20,6 +22,14 @@
   --input: #dce2ee;
   --ring: #1855f5;
   --radius: 0.8125rem;
+  --sidebar: #15254b;
+  --sidebar-foreground: #dce5ff;
+  --sidebar-primary: #4974f5;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #243b6a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2a4170;
+  --sidebar-ring: #8ba7ff;
 }
 
 .dark {
@@ -41,6 +51,14 @@
   --border: #3c4966;
   --input: #3c4966;
   --ring: #8ba7ff;
+  --sidebar: #101a37;
+  --sidebar-foreground: #dce5ff;
+  --sidebar-primary: #6388ff;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #20345e;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #2b3c64;
+  --sidebar-ring: #8ba7ff;
 }
 
 @theme inline {
@@ -62,6 +80,14 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
 }
 
 * { box-sizing: border-box; }
@@ -124,3 +150,6 @@ button, input { font: inherit; }
   .login-heading { margin-bottom: 36px; }
   .login-heading p { line-height: 1.5; }
 }
+
+.admin-theme-switch { position: static; padding: 2px; border-radius: 12px; }
+.admin-theme-switch button { width: 32px; height: 32px; border-radius: 9px; }

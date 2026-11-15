@@ -3,6 +3,32 @@ export interface BaseRequest<TData> {
   context?: string;
 }
 
+export type RequestOrderType = "Ascending" | "Descending";
+
+export interface RequestPaging {
+  index: number;
+  size: number;
+  draw?: number;
+}
+
+export interface PaginationRequest<TFilter = never> {
+  paging: RequestPaging;
+  orders?: Record<string, RequestOrderType>;
+  filter?: TFilter;
+}
+
+export interface BasePaginationResult {
+  total: number;
+  index: number;
+  size: number;
+}
+
+export interface PaginationResponse<TItem, TAdditional = never> {
+  items: TItem[];
+  base: BasePaginationResult;
+  additional?: TAdditional;
+}
+
 export interface ApiMessage {
   type: 0 | 1 | 2 | 3;
   title: string | null;
