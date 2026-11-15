@@ -24,7 +24,7 @@ public class JwtTokenServiceTests
         };
         var service = new JwtTokenService(Options.Create(options));
 
-        var token = service.CreateAccessToken(42, "superadmin", [AdminRoles.SuperAdmin]);
+        var token = service.CreateAccessToken(42, "superadmin", [AdminRoles.SuperAdmin], "test-security-stamp");
         var principal = new JwtSecurityTokenHandler().ValidateToken(token.Value, new TokenValidationParameters
         {
             ValidateIssuer = true,
@@ -39,6 +39,7 @@ public class JwtTokenServiceTests
 
         Assert.Equal("42", principal.FindFirst(ClaimTypes.NameIdentifier)?.Value);
         Assert.Equal(AdminRoles.SuperAdmin, principal.FindFirst(ClaimTypes.Role)?.Value);
+        Assert.Equal("test-security-stamp", principal.FindFirst("security_stamp")?.Value);
         Assert.True(token.ExpiresAtUtc > DateTimeOffset.UtcNow);
     }
 }

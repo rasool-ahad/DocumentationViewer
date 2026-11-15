@@ -26,6 +26,7 @@ public static class Bootstrapper
                 "Jwt:AccessTokenLifetimeMinutes must be between 1 and 1440.")
             .ValidateOnStart();
         services.AddSingleton<IJwtTokenService, JwtTokenService>();
+        services.AddSingleton<IAccessTokenRevocationService, RedisAccessTokenRevocationService>();
         return services;
     }
 }
