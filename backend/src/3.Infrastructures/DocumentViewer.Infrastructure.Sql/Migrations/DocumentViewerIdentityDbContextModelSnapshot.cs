@@ -23,6 +23,157 @@ namespace DocumentViewer.Infrastructure.Sql.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.HasSequence("ComponentIds", "dbo");
+
+            modelBuilder.HasSequence("DocumentIds", "dbo");
+
+            modelBuilder.HasSequence("NavigationIds", "dbo");
+
+            modelBuilder.HasSequence("VersionIds", "dbo");
+
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.Document", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("HasUnpublishedChanges")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("PublishedVersionNumber")
+                        .HasColumnType("int");
+
+                    b.Property<byte[]>("RowVersion")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Slug")
+                        .IsUnique();
+
+                    b.ToTable("Documents", "dbo");
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.DocumentComponent", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("DocumentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId", "Order");
+
+                    b.ToTable("DocumentComponents", "dbo");
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.DocumentVersion", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("DocumentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("PublishedAtUtc")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PublishedBy")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("VersionNumber")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId", "VersionNumber")
+                        .IsUnique();
+
+                    b.ToTable("DocumentVersions", "dbo");
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Navigation.NavigationItem", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("DocumentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("ExternalUrl")
+                        .HasMaxLength(2048)
+                        .HasColumnType("nvarchar(2048)");
+
+                    b.Property<string>("Icon")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<bool>("IsVisible")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Slug")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DocumentId");
+
+                    b.HasIndex("ParentId", "Order");
+
+                    b.ToTable("NavigationItems", "dbo");
+                });
+
             modelBuilder.Entity("DocumentViewer.Domain.Users.User", b =>
                 {
                     b.Property<int>("Id")
@@ -265,6 +416,37 @@ namespace DocumentViewer.Infrastructure.Sql.Migrations
                     b.ToTable("AspNetUserTokens", "dbo");
                 });
 
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.DocumentComponent", b =>
+                {
+                    b.HasOne("DocumentViewer.Domain.Documents.Document", null)
+                        .WithMany("Components")
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.DocumentVersion", b =>
+                {
+                    b.HasOne("DocumentViewer.Domain.Documents.Document", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Navigation.NavigationItem", b =>
+                {
+                    b.HasOne("DocumentViewer.Domain.Documents.Document", null)
+                        .WithMany()
+                        .HasForeignKey("DocumentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("DocumentViewer.Domain.Navigation.NavigationItem", null)
+                        .WithMany()
+                        .HasForeignKey("ParentId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("Framework.DDD.Domain.Toolkits.Entities.Identity.BaseRoleClaim<int>", b =>
                 {
                     b.HasOne("Framework.DDD.Domain.Toolkits.Entities.Identity.BaseRole<int>", null)
@@ -314,6 +496,11 @@ namespace DocumentViewer.Infrastructure.Sql.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("DocumentViewer.Domain.Documents.Document", b =>
+                {
+                    b.Navigation("Components");
                 });
 #pragma warning restore 612, 618
         }
